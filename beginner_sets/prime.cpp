@@ -13,8 +13,9 @@ int isPrime(int n){
 }
 
 int PrimeFactors(int n){
-    //create linked list of prime factors of n
-    
+    //create linked list ll of prime factors of n
+    ll = new LinkedList();
+
     // from 2 to square root of n
     for (int i = 2; i*i <= n; i++){
         if (n % i == 0){
@@ -33,4 +34,5 @@ int main(){
         cout << n << endl;
     }
     PrimeFactors(n);
+    return 0;
 }
