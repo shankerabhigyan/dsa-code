@@ -29,3 +29,10 @@ class LinkedList{
             cout << endl;
         }
 };
+
+int main(){
+    Node* node1 = new Node();
+    cout<<node1->data<<endl;
+
+    return 0;
+}
