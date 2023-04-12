@@ -8,20 +8,20 @@ class Solution {
     public:
     int reverseinteger(int x)
     {
-        if(x == 0)
-            return 0;
         int intmax = 2147483647;
         int intmin = -2147483648;
         int reverse = 0;
-        int sign = x/abs(x);
+        //find sign without using abs
+        int sign = (x>0)?1:-1;
         x=abs(x);
         while(x>0){
             int d = x%10;
             x = x/10;
-            if(reverse > intmax/10 || (reverse == intmax/10 && d > 7))
+            if(reverse > intmax/10 || (reverse == intmax/10 && d > 7 && sign == 1) || (reverse == intmax/10 && d > 8 && sign == -1))
                 return 0;
-            if (reverse < intmin/10 || (reverse == intmin/10 && d < -8))
-                return 0;
+            // the d=7 is for the case when reverse = 214748364 
+            /*if (reverse < intmin/10 || (reverse == intmin/10 && d < -8))
+                return 0;*/
             reverse = reverse*10 + d;
         }
         return reverse*sign;
