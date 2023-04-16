@@ -17,13 +17,13 @@ class Solution {
         while(x>0){
             int d = x%10;
             x = x/10;
-            if(reverse > intmax/10 || (reverse == intmax/10 && d > 7 && sign == 1) || (reverse == intmax/10 && d > 8 && sign == -1))
-                return 0;
             // the d=7 is for the case when reverse = 214748364 
             /*if (reverse < intmin/10 || (reverse == intmin/10 && d < -8))
                 return 0;*/
             reverse = reverse*10 + d;
         }
+        if(reverse > intmax/10 || (reverse == intmax/10 && d > 7 && sign == 1) || (reverse == intmax/10 && d > 8 && sign == -1))
+                return 0;
         return reverse*sign;
     }
 };
