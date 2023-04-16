@@ -5,7 +5,8 @@ using namespace std;
 int main(){
     
     int arr[17];
-    cout << arr << endl;
+    fill_n(arr, 17, 1);
+    cout << arr[6] << endl;
     
     return 0;
 }
