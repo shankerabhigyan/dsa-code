@@ -13,13 +13,9 @@ int maxmin(int arr[], int size, int &max, int &min){
     max = arr[0];
     min = arr[0];
     for(int i=0; i<size; i++){
-        if(arr[i] > max){
-            max = arr[i];
-        }
-        if(arr[i] < min){
-            min = arr[i];
-        }
-    }
+        max = (arr[i] > max) ? arr[i] : max;
+        min = (arr[i] < min) ? arr[i] : min;    
+    
     return 0;
 }
 
