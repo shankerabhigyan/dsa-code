@@ -36,13 +36,13 @@ int main(){
     //cout << arr[6] << endl;
     printArray(arr, sizeof(arr)/sizeof(int));
     int arr1[17] = {100,5,9,134, 57, 67, 89, 34, 23, 45, 67, 89, 90, 23, 45, 67, -87};
-    int arr2[5] = {1,2,3,4,5};
+    int arr2[6] = {1,2,3,4,5,6};
     int max,min;
     maxmin(arr1, 17, max, min);
     //cout << "Max: " << max << "   "<< "Min: "<< min<<  endl;
     reverse(arr1,17);
     printArray(arr1, 17);
-    reverse(arr2,5);
-    printArray(arr2, 5);
+    reverse(arr2,6);
+    printArray(arr2, 6);
     return 0;
 }
