@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-
+//to-do : implement for decreasing order array and for non-sorted array
 int binarySearch(int arr[], int size, int element){
     int start = 0;
     int end = size-1;
