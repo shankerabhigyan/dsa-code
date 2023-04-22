@@ -10,17 +10,17 @@ int peak(int arr[], int size){
     int end = size-1;
     int mid = start + (end-start)/2;
 
-    while(! arr[mid]>arr[mid-1] && ! arr[mid]>arr[mid+1]){
+    while(start<end){
         mid = start + (end-start)/2;
-        if(arr[mid]>arr[mid-1]){
+        if(arr[mid]<arr[mid+1]){
             start = mid+1;
         }
         else{
-            end = mid-1;
+            end = mid;
         }
-
     }
-    return mid;
+
+    return start;
 }
 
 
