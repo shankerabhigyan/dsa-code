@@ -2,7 +2,7 @@
 #include<iostream>
 using namespace std;
 
-int binarySearch(int arr[],int size, int element){
+int binarySearchfirstOcc(int arr[],int size, int element){
     int start = 0;
     int end = size-1;
     int store = -1;
@@ -32,7 +32,7 @@ int main(){
     for(int i=0; i<N; i++){
         cin >> arr[i];
     }
-    int start = binarySearch(arr, N, K); // first occurence
+    int start = binarySearchfirstOcc(arr, N, K); // first occurence
     // us elinear search
     int end = start;
     while(arr[end]==K){
