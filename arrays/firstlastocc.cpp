@@ -1,4 +1,5 @@
 //problem - find the first and last index of an element in a sorted array
+// https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
 #include<iostream>
 using namespace std;
 
