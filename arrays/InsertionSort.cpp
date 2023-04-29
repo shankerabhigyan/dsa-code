@@ -9,13 +9,13 @@ void InsertionSort(int arr[], int n){
         while(x>=0){
             if(arr[x]>key){
                 arr[x+1] = arr[x];
-                arr[x] = key;
                 x--;
             }
             else{
                 break;
             }
         }
+        arr[x+1] = key;
     }
 }
 
