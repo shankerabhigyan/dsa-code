@@ -45,5 +45,6 @@ int main(){
     arr[1]=v[1];
     // extract a vector reference & nums to a vector p
     // vector<int> p = nums;
+    // define macro for long long
     return 0;
 }
