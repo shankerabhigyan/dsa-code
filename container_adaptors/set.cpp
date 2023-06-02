@@ -32,9 +32,13 @@ int main(){
         cout << "Element not found" << endl;
     }
     // ************************************
-
-    s.erase(15); // this will erase the element 15 from the set
+    set <int> :: iterator it = s.begin(); // iterator to the first element of the set
+    s.erase(++it); 
+    display(s); 
     // the complexity of erase is O(log(n)) since it uses find() internally
-
+    // ************************************
+    //s.count() returns 1 if the element is present in the set else returns 0
+    cout << s.count(15) << endl; // returns 1
+    cout << s.count(20) << endl; // returns 1
     return 0;
 }
