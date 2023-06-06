@@ -28,7 +28,17 @@ bool isPalindrome(vector <char> ch){
             break;
         }
     }
+    // this considers all the characters in the string including special characters like @#$%?^& etc.
+    // to skip these, introduce end and start vars and check if they are alphabets or not
+    // the following function is for the same, it checks for alphabets only in a sentence/word
     return pal;
+}
+
+bool isValidPalindrome(vector <char> ch){
+    int s=0, e=ch.size()-1;
+    while(s<=e){
+        
+    }
 }
 
 int main(){
