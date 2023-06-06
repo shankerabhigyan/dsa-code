@@ -23,7 +23,7 @@ bool isPalindrome(vector <char> ch){
     int len = ch.size();
     bool pal = true;
     for(int i=0;i<len/2;i++){
-        if(ch[i]!=ch[len-1-i]){
+        if(tolower(ch[i]) != tolower(ch[len-1-i])){
             pal = false;
             break;
         }
