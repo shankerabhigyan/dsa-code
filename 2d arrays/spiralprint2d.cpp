@@ -1,12 +1,14 @@
 #include<bits/stdc++.h>
 using namespace std;
+//https://leetcode.com/problems/spiral-matrix/description/
 
 vector<int> spiralPrint(vector<vector<int>> arr){
     int n=arr.size();
     int m=arr[0].size();
     int rs=0, cs=0, re=n-1,ce=m-1, count=0;
     vector<int> spiral;
-    while(count<m*n){
+    tot = n*m;
+    while(count<tot){
         for(int i=cs;i<=ce;i++){
             cout << arr[rs][i] << " ";
             spiral.push_back(arr[rs][i]);
@@ -16,7 +18,7 @@ vector<int> spiralPrint(vector<vector<int>> arr){
         if (rs>re){
             break;
         }
-        if (count>=m*n){
+        if (count>=tot){
                 break;
         }
 
@@ -26,7 +28,7 @@ vector<int> spiralPrint(vector<vector<int>> arr){
             count++;
         }
         ce--;
-        if (count>=m*n){
+        if (count>=tot){
                 break;
         }
         for(int i=ce;i>=cs;i--){
@@ -35,7 +37,7 @@ vector<int> spiralPrint(vector<vector<int>> arr){
             count++;
         }
         re--;
-        if (count>=m*n){
+        if (count>=tot){
                 break;
         }
         for(int i=re;i>=rs;i--){
@@ -77,5 +79,5 @@ int main(){
     }
 
     cout << "The spiral print is : ";
-    spiralPrint(arr,n,m);
+    spiral = spiralPrint(arr,n,m);
 }   
