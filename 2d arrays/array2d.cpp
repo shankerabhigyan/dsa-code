@@ -46,5 +46,14 @@ int main(){
     for(auto i:rowsum){
         cout << i << " ";
     }
+    // largest row sum from the rowsum vector
+    int max=0, i=0;
+    for(auto j:rowsum){
+        if(j>max){
+            max=j;
+            i++;
+        }
+    }
+    cout << "The largest row sum is : " << max << " at row " << i << endl;
     return 0;
 }
