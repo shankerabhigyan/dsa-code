@@ -22,8 +22,14 @@ int main(){
     cout << sizeof(*p) << endl;
     */
 
-    // CHAR ARRAYS
-    
+    """
+    Pointers in Character Arrays 
+    """
+    char ch[6] = "abcde";
+    cout << ch << endl; //abcde
+    cout << &ch << endl; // address of the string
+    char *c = &ch[0];  // abcde
+    cout << c << endl;
 
 
     return 0;   
