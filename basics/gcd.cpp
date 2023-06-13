@@ -1,4 +1,5 @@
 // using euclid's algorithm
+// https://www.codingninjas.com/codestudio/library/gcd-euclidean-algorithm
 #include<bits/stdc++.h>
 using namespace std;
 
