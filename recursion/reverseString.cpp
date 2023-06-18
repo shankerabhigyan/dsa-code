@@ -15,7 +15,7 @@ char* reverseString(char* ch, int n){
     }
     return ch1;
     
-}
+} 
 
 int main(){
     int n;
