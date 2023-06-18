@@ -9,13 +9,20 @@ void swap(int* a, int* b){
 
 vector<int> bubbleSort(vector<int> v){
     int n = v.size();
-    while(n > 0){
-        for(int i=0; i<n-1; i++){
-            if(v[i]>v[i+1]){
-                swap(&v[i],&v[i+1]);
-            }
+    if(n==0 || n==1){
+        return v;
+    }
+
+    for(int i=0; i<n-1; i++){
+        if(v[i]>v[i+1]){
+            swap(&v[i],&v[i+1]);
         }
-        n--;
+    }
+
+    vector<int> smallVector(v.begin(), v.end()-1);
+    vector<int> smallSortedVector = bubbleSort(smallVector);
+    for(int i=0; i<n-1; i++){
+        v[i] = smallSortedVector[i];
     }
     return v;
 }
