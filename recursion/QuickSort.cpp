@@ -1,20 +1,20 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-void quickSort(vector<int> &v){
+void quickSort(vector<int> &v){ // complexity = O(nlogn)
     // base case
-    if(v.size()==0 || v.size()==1){
+    if(v.size()==0 || v.size()==1){ // already sorted
         return;
     } 
     // partition
     int pivot = v[0];
     vector<int> v1,v2;
-    for(int i=1;i<v.size();i++){
+    for(int i=1;i<v.size();i++){ 
         if(v[i]<pivot){
-            v1.push_back(v[i]);
+            v1.push_back(v[i]); // v1 contains elements less than pivot
         }
         else{
-            v2.push_back(v[i]);
+            v2.push_back(v[i]); // v2 contains elements greater than pivot
         }
     }
     // recursive calls
