@@ -3,6 +3,7 @@
 // for k=2, ans would be [2,1,4,3,6,5]
 // for k=3, ans would be [3,2,1,6,5,4]
 // and so on
+// https://www.codingninjas.com/studio/problems/reverse-list-in-k-groups_983644?leftPanelTab=1&campaign=Lovebabbar_codestudio_26thjan&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbar_codestudio_26thjan
 
 #include <bits/stdc++.h>
 using namespace std;
