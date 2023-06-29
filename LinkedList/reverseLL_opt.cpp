@@ -50,7 +50,7 @@ void reverse(Node* &head){
     head->next = node;
 }
 
-void reverse2(Node* &head, Node* &curr, Node* &prev){
+void reverse2(Node* &head, Node* &curr, Node* &prev){ // prev = NULL and curr = head inititally
     if(curr == NULL){
         head = prev;
         return;
