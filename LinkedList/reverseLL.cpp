@@ -32,11 +32,22 @@ void print(NodeLL* &node){
     print(node->next);
 }
 
+NodeLL* findTail(NodeLL* &head){
+    NodeLL* node = head;
+    if (node == NULL){
+        return NULL;
+    }
+    while(node->next != NULL){
+        node = node->next;
+    }
+    return node;
+}
+// runtime error: member access within null pointer of type 'ListNode' (solution.cpp)
+// means that you are trying to access a member of a null pointer.
+// fix : 
+
 void reverse(NodeLL* &head, NodeLL* &tail, NodeLL* &head1){ 
     if(head == NULL || head->next == NULL){ // empty list
-        return;
-    }
-    if(head == tail){ // single node
         return;
     }
     if(tail->next == NULL){ // marking the new head
