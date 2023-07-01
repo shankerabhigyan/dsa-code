@@ -1,4 +1,5 @@
 // https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+// https://www.codingninjas.com/studio/problems/remove-duplicates-from-unsorted-linked-list_1069331?source=youtube&campaign=YouTube_Lovebabbar29thJan&utm_source=youtube&utm_medium=affiliate&utm_campaign=YouTube_Lovebabbar29thJan
 // REMOVE DUPLICATES FROM SORTED AND UNSORTED LINKED LIST
 
 #include<bits/stdc++.h>
@@ -46,6 +47,28 @@ void removeDuplicatesSorted(Node* head){
     }
 }
 
+void removeElement(Node* prev){
+    Node* temp = prev->next;
+    prev->next = temp->next;
+    delete temp;
+}
+
+void removeDuplicates(Node* head){ // O(n) time and O(n) space; works for sorted and unsorted both
+    if(head == NULL || head->next == NULL){
+        return;
+    }
+    unordered_set<int> m;
+    Node* node = head;
+    while(node != NULL){
+        m.insert(node->val);
+        if(node->next != NULL && m.find(node->next->val) != m.end()){
+            removeElement(node);
+            continue; // to avoid incrementing node since the next node is already deleted
+        }
+        node = node->next;        
+    }
+}
+
 int main(){
     int n;
     Node* node = new Node();
@@ -60,7 +83,8 @@ int main(){
         n--;
     }
     //print(head);
-    removeDuplicatesSorted(head);
+    //removeDuplicatesSorted(head);
+    removeDuplicates(head);
     print(head);
 
 
