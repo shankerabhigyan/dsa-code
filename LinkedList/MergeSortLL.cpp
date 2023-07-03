@@ -1,5 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
+// data replacement is not allowed, change links instead
 
 struct Node{
     int val;
@@ -19,44 +20,53 @@ void print(Node* node){
 }
 
 Node* merge(Node* n1, Node* n2){
-    if(n1==NULL){
-        return n2;
+    Node* merge = new Node();
+    Node* tail = merge;
+    while(n1!=NULL && n2!=NULL){
+        if(n1->val < n2->val){
+            tail->next = n1;
+            n1 = n1->next;
+        }
+        else{
+            tail->next = n2;
+            n2 = n2->next;
+        }
+        tail = tail->next;
     }
-    if(n2==NULL){
-        return n1;
-    }
-    Node* head = NULL;
-    if(n1->val < n2->val){
-        head = n1;
-        head->next = merge(n1->next, n2);
-    }
-    else{
-        head = n2;
-        head->next = merge(n1, n2->next);
-    }
-    return head;
-}
-
-Node* MergeSort(Node* node){
-    if(node==NULL || node->next==NULL){
-        return node;
-    }
-    Node* n1 = node;
-    Node* n2 = node;
-    while(n2!=0 && n2->next!=0){
+    while(n1!=NULL){
+        tail->next = n1;
         n1 = n1->next;
-        n2 = n2->next->next;
+        tail = tail->next;
     }
-    n2 = n1->next;
-    n1->next = NULL;
-    n1 = node;
-    n1 = MergeSort(n1);
-    n2 = MergeSort(n2);
-    Node* head = merge(n1, n2);
-    return head;
-
-
+    while(n2!=NULL){
+        tail->next = n2;
+        n2 = n2->next;
+        tail = tail->next;
+    }
+    
+    return merge->next;
 }
+
+
+void MergeSort(Node* &node){
+    if(node == NULL || node->next == NULL){
+        return;
+    }
+    Node* slow = node;
+    Node* fast = slow->next->next;
+    while(fast!=NULL && fast->next!=NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+    }
+    // this way now slow denotes the middle of the matrix
+    fast = slow->next;
+    slow->next = NULL;
+    slow = node;
+    //slow is now the first pointer of the first half and fast of the second half
+    MergeSort(slow);
+    MergeSort(fast);
+    node = merge(slow,fast);
+};
 
 int main(){
     int n;
@@ -73,7 +83,7 @@ int main(){
     cout << endl << "Original LL: ";
     print(head);
 
-    head = MergeSort(head);
+    MergeSort(head);
     cout << endl << "Sorted LL: ";
     print(head);
 
