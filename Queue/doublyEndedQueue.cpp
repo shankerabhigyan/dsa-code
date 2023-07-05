@@ -22,11 +22,48 @@ class Deque{
         }
     }
 
+    bool isEmpty(){
+        if(front==-1 && rear==-1)
+    }
+
     bool pushFront(int x){
         if(isFull()){
             return false;
         }
-        
+        else if(front==-1){
+            front = 0;
+            rear = 0;
+        }
+        else if(front==0){
+            front = size-1;
+        }
+        else{
+            front --;
+        }
+        arr[front] = x;
+        return true;
+    }
+
+    bool pushRear(int x){
+        if(isFull()){
+            return false;
+        }
+        else if(rear==-1){
+            front = 0;
+            rear = 0;
+        }
+        else if(rear==size-1){
+            rear = 0;
+        }
+        else{
+            rear++;
+        }
+        arr[rear] = x;
+        return true;
+    }
+
+    int popFront(){
+
     }
 }
 
