@@ -50,33 +50,33 @@ node* buildFromLevelOrder(){
     return root;
 }
 
-void left(node* root, vector<int> &v){
-    if(root->left==NULL){
+void leaf(node* root, vector<int> &v){
+    if(root==NULL){
         return;
     }
-    v.push_back(root->val);
-    left(root->left,v);
-}
-
-void leaf(node* root, vector<int> &v){
-    if(root->left==NULL || root->right==NULL){
-        if(root->left==NULL && root->right==NULL){
-            v.push_back(root->val);
-            return;
-        }
-        else{
-            if(root->left!=NULL){
-                leaf(root->left,v);
-            }
-            else{
-                leaf(root->right,v);
-            }
-            return;
-        }
+    if(root->left==NULL && root->right==NULL){
+        v.push_back(root->val);
+        return;
     }
     leaf(root->left,v);
     leaf(root->right,v);
-    
+    return;
+}
+
+void left(node* root, vector<int> &v){
+    if(root==NULL){
+        return;
+    }
+    if(root->left==NULL && root->right==NULL){
+        return;
+    }
+    v.push_back(root->val);
+    if(root->left==NULL){
+        left(root->right,v);
+    }
+    else{
+        left(root->left,v);
+    }
     return;
 }
 
@@ -84,22 +84,27 @@ void right(node* root, vector<int> &v){
     if(root==NULL){
         return;
     }
-    if(root->right==NULL){
+    if(root->left==NULL && root->right==NULL){
         return;
     }
-    right(root->right,v);
+    if(root->right==NULL){
+        right(root->left,v);
+    }
+    else{
+        right(root->right,v);
+    }
     v.push_back(root->val);
+    return;
 }
 
 vector<int> boundary(node* root){
     vector<int> v;
-    left(root,v);
-    cout << "left done\n";
-    leaf(root,v);
-    cout << "leaf done\n";
+    v.push_back(root->val);
+    left(root->left,v);
+    leaf(root->left,v);
+    leaf(root->right,v);
     right(root->right,v);
-    cout << "right done\n";
-
+    
     return v;
 }
 
@@ -118,3 +123,7 @@ int main(){
 
 // sample i/p 2:
 // 1 2 -1 4 9 6 5 -1 3 -1 -1 -1 -1 7 8 -1 -1 -1 -1
+
+// (4 (10) (5 (5) (6 (7) (8 (8) (8 (11)))))) (3 (4) (1 (3) (8 (6) (11 (11) (5 (8))))))
+// formatted i/p for the above tree in similar format as sample i/p 1 :
+
