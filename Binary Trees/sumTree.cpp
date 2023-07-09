@@ -52,13 +52,31 @@ node* buildFromLevelOrder(){
     return root;
 }
 
-bool sumTree(node* root){
-    
+pair<int,bool> sumTree(node* root){ // first : sum, second : checksum || Complexity : O(n)
+    if(root==NULL){
+        return make_pair(0,true);
+    }
+    if(root->left==NULL && root->right==NULL){
+        return make_pair(root->val,true);
+    }
+
+    pair<int,bool> left = sumTree(root->left);
+    pair<int,bool> right = sumTree(root->right);
+
+    if(left.second==false || right.second==false || left.first+right.first != root->val){
+        return make_pair(left.first+right.first+root->val,false);
+    }
+
+    return make_pair(left.first+right.first+root->val,true);
 }
 
 int main(){
     node* root = buildFromLevelOrder();
-    bool b = sumTree(root);
+    bool b = sumTree(root).second;
     cout << endl << b << endl;
     return 0;
 }
+
+// 62 16 15 N 8 4 7 N 8 4
+// input for above test case
+// 62 16 15 -1 8 4 7 -1 8 4 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
