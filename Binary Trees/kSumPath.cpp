@@ -30,7 +30,7 @@ node* buildFromLevelOrder(){
 
         cout << "Enter left node value for " << temp->val << " : ";
         cin >> data;
-        if(data!=-1){
+        if(data!=0){
             left = new node(data);
         }
         else{
@@ -38,7 +38,7 @@ node* buildFromLevelOrder(){
         }
         cout << "Enter right node value for " << temp->val << " : ";
         cin >> data;
-        if(data!=-1){
+        if(data!=0){
             right = new node(data);
         }
         else{
@@ -51,11 +51,38 @@ node* buildFromLevelOrder(){
     }
     return root;
 }
+// 0 - NULL
+
+void kSum(node* root, int k, ll sum, unordered_map<ll,int> &m, int &count){
+    if(!root){
+        return;
+    }
+    
+    if(sum+root->val == k){
+        count++;
+    }
+    
+    count+=m[sum+root->val-k];
+    m[sum+root->val]++;
+
+    kSum(root->left, k, sum+root->val, m, count);
+    kSum(root->right, k, sum+root->val, m, count);
+
+    m[sum+root->val]--;
+    return;
+}
+
+int sumK(node* root, int k){
+    int count=0;
+    unordered_map<ll,int> m;
+    kSum(root,k,0,m,count);
+    return count;
+}
 
 int main(){
     int sum;
     cin >> sum;
     node* root = buildFromLevelOrder();
-
+    cout << sumK(root, sum) << endl;
     return 0;
 }
