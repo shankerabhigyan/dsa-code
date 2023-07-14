@@ -1,5 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
+// find minimum / max value in a BST;
+
 
 struct node{
     int key;
@@ -44,9 +46,28 @@ void inorder(node* root){
     inorder(root->right);
 }
 
+int findmin(node* root){
+    int data = -1;
+    while(root!=NULL){
+        data = root->key;
+        root = root->left;
+    }
+    return data;
+}
+
+int findmax(node* root){
+    int data = -1;
+    while(root!=NULL){
+        data = root->key;
+        root = root->right;
+    }
+    return data;
+}
+
 int main(){
     node* root = buildBST();
-    inorder(root);
-    cout <<  endl;
+    int min = findmin(root);
+    int max = findmax(root);
+    cout << min << " " << max << endl;
     return 0;
 }

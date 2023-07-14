@@ -1,3 +1,4 @@
+// https://www.codingninjas.com/studio/problems/validate-bst_799483?leftPanelTab=0
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -35,18 +36,37 @@ node* buildBST(){
     return root;
 }
 
-void inorder(node* root){
+void inorder(node* root, vector<int> &v){
     if(root==NULL){
         return;
     }
-    inorder(root->left);
-    cout << root->key << " ";
-    inorder(root->right);
+    inorder(root->left,v);
+    //cout << root->key << " ";
+    v.push_back(root->key);
+    inorder(root->right,v);
+}
+
+bool validateBST(node* root){
+    if(root == NULL){
+        return true;
+    }
+
+    vector<int> v;
+    inorder(root,v);
+    bool flag = true;
+    for(int i=0; i<v.size()-1;i++){
+        if(v[i]>v[i+1]){
+            flag = false;
+            break;
+        }
+    }
+    return flag;
+
 }
 
 int main(){
     node* root = buildBST();
-    inorder(root);
-    cout <<  endl;
+    cout << validateBST(root) << endl;
+
     return 0;
 }
