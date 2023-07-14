@@ -79,7 +79,7 @@ void flatten(node* root){
     }
 }
 
-int main(){
+int main(){ 
     node* root = buildFromLevelOrder();
     flatten(root);
     display(root);
