@@ -36,6 +36,7 @@ node* buildBST(){
     return root;
 }
 
+// APPROACH 1 : 
 void inorder(node* root, vector<int> &v){
     if(root==NULL){
         return;
@@ -62,6 +63,31 @@ bool validateBST(node* root){
     }
     return flag;
 
+}
+
+// APPROACH 2 : (optimised) 
+bool validateBST_(node* root, int max, int min){
+    if(root == NULL){
+        return true;
+    }
+    
+    if(root->left){
+        if(root->key < root->left->key){
+            return false;
+        }
+    }
+
+    if(root->right){
+        if(root->key > root->right->key){
+            return false
+        }
+    }
+
+    if(root->key > max || root->key < min){
+        return false;
+    }
+    
+    return validateBST_(root->left, root->key, min) && validateBST_(root->right, max, root->key);
 }
 
 int main(){
