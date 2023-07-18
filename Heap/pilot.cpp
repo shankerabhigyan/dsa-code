@@ -36,7 +36,7 @@ class MaxHeap{
         int r = 2*i + 2;
         int largest = i;
 
-        if(l<heapSize && arr[l]>arr[i]){
+        if(l<heapSize && arr[l]>arr[largest]){
             largest = l;
         }
         if(r<heapSize && arr[r]>arr[largest]){
@@ -85,6 +85,7 @@ class MaxHeap{
     }
 };
 
+
 int main(){
     MaxHeap heap(10);
     int x;
@@ -102,6 +103,23 @@ int main(){
     heap.deletekey(x);
     cout << "new heap..." << endl;
     heap.display();
+
+    // STL IMPLEMENTATION
+    priority_queue<int> pq; // max heap
+    pq.push(1);
+    pq.push(2);
+    pq.push(5);
+    pq.push(3);
+
+    cout << endl << "pq top : " << pq.top() << endl; 
+
+    priority_queue<int,vector<int>,greater<int>> minheap; // min heap
+    minheap.push(11);
+    minheap.push(2);
+    minheap.push(7);
+    minheap.push(1);
+
+    cout << endl << "minheap top : " << minheap.top() << endl;
 
     return 0;
 }
