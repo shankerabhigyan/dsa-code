@@ -13,7 +13,7 @@ void MinHeapify(vector<int> &arr, int i, int heapSize){
     if(r<heapSize && arr[r]<arr[smallest]){
         smallest = r;
     }
-    if(smallest!=i){
+    if(smallest!=i){q
         swap(arr[i],arr[smallest]);
         MinHeapify(arr, smallest, heapSize);
     }
