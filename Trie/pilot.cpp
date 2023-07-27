@@ -88,6 +88,18 @@ struct TrieNode{
             }
         }
     }
+
+    bool startsWith(string &prefix){
+        TrieNode* curr = this;
+        for(auto ch:prefix){
+            int index = ch-'a';
+            if(!curr->child[index]){
+                return false;
+            }
+            curr = curr->child[index];
+        }
+        return true;
+    }
 };
 
 int main(){
