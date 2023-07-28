@@ -1,4 +1,4 @@
-// https://www.codingninjas.com/studio/problems/longest-common-prefix_2090383?topList=love-babbar-dsa-sheet-problems&leftPanelTab=0&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbar
+// https://www.codingninjas.com/studio/problems/implement-a-phone-directory_1062666?topList=love-babbar-dsa-sheet-problems&leftPanelTab=0&utm_source=youtube&utm_medium=affiliate&utm_campaign=Lovebabbar
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -103,53 +103,90 @@ struct TrieNode{
     }
 };
 
-int countChildren(TrieNode* &root){
-    int count=0;
-    for(int i=0;i<VOCAB_SIZE;i++){
-        char ch = 'a'+i;
-        if(root->child[i]!=NULL){
-            count++;
-        }
+// *****************************************************************************************************
+// APPROACH 1 : (20 ms; <49%)
+
+void getStrings(TrieNode* root, string curr, vector<string> &v){
+    if(root->eow){
+        v.push_back(curr);
     }
-    return count;
-}
-void getLCP(TrieNode* root, string &ans){
-    int count = countChildren(root);
-    if(count==1){
-        for(int i=0;i<VOCAB_SIZE;i++){
-            if(root->child[i]){
-                ans = ans + char('a'+i);
-                getLCP(root->child[i],ans);
-                return;
-            }
+    for(int i=0;i<VOCAB_SIZE;i++){
+        if(root->child[i]){
+            char ch = 'a'+i;
+            string s = curr + ch;
+            getStrings(root->child[i],s,v);
         }
     }
     return;
 }
-
-string longestCommonPrefix(vector<string> &arr, int n){
+// Time Complexity : O(n*m) where n is the number of words in the list and m is the length of the query (worst case)
+vector<vector<string>> phoneDirectory(vector<string> &list, string &query){ 
     TrieNode* root = new TrieNode();
-    for(string key:arr){
-        root->insertKey(key);
+    for(string s:list){
+        root->insertKey(s);
     }
+    vector<vector<string>> ans;
     string s="";
-    getLCP(root,s);
-    return s;
+    int i=0;
+    while(i<query.size()){
+        char ch = query[i];
+        int index = ch-'a';
+        s = s+ch;
+        vector<string> v={};
+        if(root->child[index]){
+            getStrings(root->child[index],s,v);
+            root = root->child[index];
+            ans.push_back(v);
+            i++;
+            continue;
+        }
+        break;
+    }
+    vector<string> empty;
+    if(i<query.size()){
+        ans.push_back(empty);
+        i++;
+    }
+    if(ans.size()==1 && ans[0].size()==0){
+        vector<vector<string>> ans2;
+        return ans2;
+    }
+    return ans;
 }
 
+// *****************************************************************************************************
+// OPTIMISED SOLUTION : 
+
+vector<vector<string>> phoneDirectoryOpt(vector<string> &list, string &query){
+    
+}
+
+
+
+
 int main(){
-    vector<string> arr;
+
+    vector<string> list;
+    cout << "Enter vocab" << endl;
     string s;
-    string ter("-1");
     cin >> s;
-    while(s!=ter){
-        arr.push_back(s);
+    while(s!="-1"){
+        list.push_back(s);
         cin >> s;
     }
 
-    cout << longestCommonPrefix(arr,arr.size()) << endl;
+    string query;
+    cout << "Enter Query : ";
+    cin >> query;
+    
+    vector<vector<string>> v = phoneDirectory(list,query);
+
+    for(auto x:v){
+        for(auto y:x){
+            cout << y << " ";
+        }
+        cout << endl;
+    }
 
     return 0;
 }
-
-// kimrekacsf kimrettrwa kimreeybfg timrewwmnr kimretjxjl kimrejecjw 
