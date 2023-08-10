@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// the graph is a weightes DAG graph
+// the graph is a weighted DAG graph
 
 // https://www.codingninjas.com/studio/library/shortest-path-in-a-directed-acyclic-graph
 
