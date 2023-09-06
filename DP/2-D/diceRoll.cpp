@@ -29,7 +29,31 @@ int numWaysToTarget(int n,int k, int target){
 }
 
 int numWaysToTargetTab(int n, int k, int target){
-    
+    vector<vector<int>> dp(target+1,vector<int>(n+1,0));
+    dp[0][n] = 1;
+    for(int rem=1;rem<=target;rem++){
+        for(int index=n-1;index>=0;index--){
+            for(int i=1;i<=k && i<=rem;i++){
+                dp[rem][index] = (dp[rem][index] + dp[rem-i][index+1])%MOD;
+            }
+        }
+    }
+    return dp[target][0];
+}
+
+int numWaysToTargetOpt(int n, int k, int target){
+    vector<int> dp(target+1,0);
+    dp[0] = 1;
+    for(int i=1;i<=n;i++){
+        vector<int> temp(target+1,0);
+        for(int rem=1;rem<=target;rem++){
+            for(int j=1;j<=k && j<=rem;j++){
+                temp[rem] = (temp[rem] + dp[rem-j])%MOD;
+            }
+        }
+        dp = temp;
+    }
+    return dp[target];
 }
 
 int main(){
