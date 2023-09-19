@@ -61,7 +61,12 @@ vector<int> nextSmaller(vector<int>v, int n){
         while(s.top()!=-1 && v[s.top()] >=curr){
             s.pop();
         }
-        ans[i] = s.top();
+        if(s.top()==-1){
+            ans[i] = n;
+        }
+        else{
+            ans[i] = s.top();
+        }
         s.push(i);
     }
     return ans;
@@ -84,7 +89,6 @@ vector<int> prevSmaller(vector<int>v, int n){
 }
 
 int optLargestRectangularArea(vector<int>v){
-    stack<int>s;
     int area=INT_MIN;
     int len = v.size();
     vector<int> n(len);
@@ -94,15 +98,11 @@ int optLargestRectangularArea(vector<int>v){
     p = prevSmaller(v,len);
 
     for(int i=0; i<len; i++){
-        if(n[i]==-1){
-            n[i] = len;
-        }
         int a = v[i];
         int b = n[i] - p[i] - 1;
         area = max(area, a*b);
     }
     return area;
-
 }
 
 int main(){
