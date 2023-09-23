@@ -10,17 +10,14 @@ struct Node{
 };
 
 Node* Merge(Node* list1, Node* list2){
-    if(list1==NULL){
-        return list2;
-    }
-    if(list2==NULL){
+    if(!list1) return list2;
+    if(!list2) return list1;
+    if(list1->val < list2->val){
+        list1->next = Merge(list1->next, list2);
         return list1;
     }
-    Node* n1 = list1;
-    Node* n2 = list2;
-    Node* curr = n1;
-    while(n1!=NULL && n2!=NULL){
-        
+    else{
+        list2->next = Merge(list1, list2->next);
+        return list2;
     }
-
 }
