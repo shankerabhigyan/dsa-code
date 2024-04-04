@@ -1,44 +1,43 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Solution{
-    public:
-
-    vector<int> findMinHeightTrees(int n, vector<vector<int>> &edges){
-        if(n==0){
+class Solution {
+public:
+    vector<int> findMinHeightTrees(int n, vector<vector<int>>& edges) {
+        if(n==0)
             return {};
-        }
-        if(n==1){
+        if(n==1)
             return {0};
-        }
-        vector<int> degrees(n, 0);
-        vector<vector<int>> adj(n);
-        for(int i=0;i<edges.size();i++){
+        vector<int>ans;
+        vector<int>degrees(n,0);
+        vector<vector<int>>adj(n);
+        for(int i=0;i<edges.size();i++)
+        {
             adj[edges[i][0]].push_back(edges[i][1]);
             adj[edges[i][1]].push_back(edges[i][0]);
+            degrees[edges[i][1]]++;
+            degrees[edges[i][0]]++;
         }
-        for(vector<int> edge : edges){
-            degrees[edge[0]]++;
-            degrees[edge[1]]++;
+        queue<int>queue;
+        for(int i=0;i<n;i++)
+        {
+            if(degrees[i]==1)
+                queue.push(i);
         }
-        queue<int> q;
-        for(int i=0;i<n;i++){
-            if(degrees[i]==1){
-                q.push(i);
-            }
-        }
-        vector<int> ans;
-        while(!q.empty()){
+        while(!queue.empty())
+        {
             ans.clear();
-            for(int i=0;i<q.size();i++){
-                int curr = q.front();
-                q.pop();
+            int size=queue.size();
+            for(int i=0;i<size;i++)
+            {
+                int curr=queue.front();
+                queue.pop();
                 ans.push_back(curr);
-                for(int neighbor : adj[curr]){
+                for(auto &neighbor:adj[curr])
+                {
                     degrees[neighbor]--;
-                    if(degrees[neighbor]==1){
-                        q.push(neighbor);
-                    }
+                    if(degrees[neighbor]==1)
+                        queue.push(neighbor);
                 }
             }
         }
