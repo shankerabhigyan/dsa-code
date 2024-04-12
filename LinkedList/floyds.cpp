@@ -50,4 +50,4 @@ void removeLoop(Node* start){
     }
     node->next = NULL;
     return;
-}
+}// Tested by enigma
