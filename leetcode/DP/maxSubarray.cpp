@@ -48,9 +48,29 @@ int maxSubArrayTabOpt(vector<int>&nums){
     return p1;
 }
 
-// int maxSubArrayDivideAndConquer(vector<int>&nums){
+int getMaxSubarrayDivideAndConquer(vector<int>&nums, int s, int e, vector<int>&pre, vector<int>&suf){
+    if(s==e){
+        return nums[s];
+    }
+    int m = (s+e)/2;
+    int left = getMaxSubarrayDivideAndConquer(nums,s,m,pre,suf);
+    int right = getMaxSubarrayDivideAndConquer(nums,m+1,e,pre,suf);
+    int cross = pre[m]+suf[m+1];
+    return max(max(left,right),cross);
+}
 
-// }
+int maxSubArrayDivideAndConquer(vector<int>&nums){
+    int n = nums.size();
+    vector<int> pre = nums;
+    for(int i=1;i<n;i++){
+        pre[i] += max(pre[i-1],0);
+    }
+    vector<int> suf = nums;
+    for(int i=n-2;i>=0;i--){
+        suf[i] += max(suf[i+1],0);
+    }
+    return getMaxSubarrayDivideAndConquer(nums,0,n-1,pre,suf);
+}
 
 int main(){
     int n;
@@ -59,6 +79,6 @@ int main(){
     for(int i=0; i<n; i++){
         cin >> nums[i];
     }
-    cout << maxSubArrayTab(nums) << endl;
+    cout << maxSubArrayDivideAndConquer(nums) << endl;
     return 0;
 }

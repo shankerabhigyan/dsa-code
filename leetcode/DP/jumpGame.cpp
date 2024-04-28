@@ -1,24 +1,29 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int getOptJumps(vector<int>&nums, vector<int>&dp, int &n, int i){
-    if(i==n-1){
-        dp[i] = 0;
-        return 0;
+int solve(vector<int>&nums,int i, vector<int>&dp){
+    if(i>=nums.size()-1){
+        return 1;
     }
     if(dp[i]!=-1){
         return dp[i];
     }
-    if(nums[i]==0){
-        dp[i] = INT_MAX-nums.size();
-        return dp[i];
+    for(int j=1;j<=nums[i];j++){
+        if (solve(nums,i+j,dp)){
+            dp[i] = 1;
+            return 1;
+        }
     }
-    int minJumps = INT_MAX;
-    for(int j=1; j<=nums[i] && j+i<=n-1 ;j++){
-        minJumps = min(minJumps,1+getOptJumps(nums,dp,n,i+j));
-    }
-    dp[i] = minJumps;
-    return minJumps;
+    dp[i] = 0;
+    return 0;
+}
+
+bool canJump(vector<int>&nums){
+    int n = nums.size();
+    vector<int> dp(n,-1);
+    int ans = solve(nums,0,dp);
+    if(ans) return true;
+    return false;
 }
 
 void printVector(vector<int>&v){
@@ -28,65 +33,42 @@ void printVector(vector<int>&v){
     cout << endl;
 }
 
-int jump(vector<int>&nums){
-    int n = nums.size();
-    vector<int> dp(n,-1);
-    for(int t=n-1;t>=0;t--){
-        getOptJumps(nums,dp,n,t);
+bool canJumpTab(vector<int>&nums){
+    vector<int> dp(nums.size(),0);
+    dp[nums.size()-1] = 1;
+    for(int i=nums.size()-2;i>=0;i--){
+        for(int j=1;j<=nums[i];j++){
+            if(i+j<nums.size() && dp[i+j]==1){
+                dp[i] = 1;
+            }
+        }
     }
-    // printVector(dp);
     return dp[0];
 }
 
-int jumpTabulation(vector<int>&nums){
-    int n = nums.size();
-    if(n==1 || n==2){
-        return n-1;
-    }
-    vector<int> dp(n,-1);
-    dp[n-1] = 0;
-    if(nums[n-2]==0){
-        dp[n-2] = INT_MAX - n;
-    }
-    else{
-        dp[n-2] = 1;
-    }
-    for(int i=n-3; i>=0; i--){
-        if(nums[i]==0){
-            dp[i] = INT_MAX - n;
-            continue;
+bool canJumpOpt(vector<int>&nums){
+    int maxJump = nums[0];
+    for(int i=0;i<nums.size();i++){
+        if(nums[i]==0 && maxJump==i){
+            return false;
         }
-        int count = INT_MAX;
-        for(int j=1;j<=nums[i]&&i+j<=n-1;j++){
-            count = min(count, 1+dp[i+j]);
+        if(i+nums[i]>maxJump){
+            maxJump = i+nums[i];
         }
-        dp[i] = count;
+        if(maxJump>=nums.size()-1){
+            return true;
+        }
     }
-    //printVector(dp);
-    return dp[0];
-}
-
-int smartJump(vector<int> &nums){
-    for(int i=1;i<=nums.size()-1;i++){
-        nums[i] = max(nums[i]+i,nums[i-1]);
-    }
-    printVector(nums);
-    int i=0;
-    int ans=0;
-    while(i<nums.size()-1){
-        ans++;
-        i=nums[i];
-    }
-    return ans;
+    return true;
 }
 
 int main(){
     int n;
     cin >> n;
-    vector<int> nums(n,0);
+    vector<int> nums(n);
     for(int i=0;i<n;i++){
         cin >> nums[i];
     }
-    cout << smartJump(nums) << endl;
+    cout << canJumpTab(nums) << endl;
     return 0;
 }
