@@ -35,6 +35,23 @@ int maxSubArrayTab(vector<int>&nums){
     return dp[0][0];
 }
 
+int maxSubArrayTabOpt(vector<int>&nums){
+    int n = nums.size();
+    int p1 = INT_MIN;
+    int p2 = 0;
+    for(int i=n-1;i>=0;i--){
+        int t1 = max(p1,nums[i]+p2);
+        int t2 = max(0,nums[i]+p2);
+        p1 = t1;
+        p2 = t2;
+    }
+    return p1;
+}
+
+// int maxSubArrayDivideAndConquer(vector<int>&nums){
+
+// }
+
 int main(){
     int n;
     cin >> n;
