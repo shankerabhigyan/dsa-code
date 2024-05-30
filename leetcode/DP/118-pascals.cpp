@@ -26,8 +26,7 @@ vector<vector<int>> generate(int numRows){
 }
 
 int main(){
-    int numRows;
-    cin >> numRows;
+    int numRows=5;
     vector<vector<int>> ans = generate(numRows);
     return 0;
 }
