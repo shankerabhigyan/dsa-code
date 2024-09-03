@@ -18,7 +18,7 @@ void backtrack(const vector<int>& V, int start, vector<int>& current, int target
 
     for (int i = start; i < V.size() && V[i] <= target; i++) {
         current.push_back(V[i]);
-        backtrack(V, i, current, target - V[i], results);
+        backtrack(V, i+1, current, target - V[i], results);
         current.pop_back();
     }
 }
@@ -27,9 +27,9 @@ vector<vector<int>> combinationSum(vector<int>& V, int target) {
     vector<vector<int>> results;
     vector<int> current;
     sort(V.begin(), V.end());
-    V.erase(unique(V.begin(), V.end()), V.end());
 
     backtrack(V, 0, current, target, results);
+    results.erase(unique(results.begin(),results.end()), results.end());
     return results;
 }
 

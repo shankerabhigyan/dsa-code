@@ -39,7 +39,8 @@ vector<vector<int>> bitmasking(vector<int> &V){
         sort(temp.begin(), temp.end());
         ans.push_back(temp);
     }
-    // sort(ans.begin(), ans.end());
+    sort(ans.begin(), ans.end());
+    ans.erase(unique(ans.begin(),ans.end()), ans.end());
     return ans; 
 }
 
