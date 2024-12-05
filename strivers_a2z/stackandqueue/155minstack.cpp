@@ -1,26 +1,40 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+//https://leetcode.com/problems/min-stack/
+
 class MinStack {
+private:
+    stack<pair<int,int>> st1;
+    int min = INT_MAX;
 public:
     MinStack() {
-        
+        // empty
     }
-    
+
     void push(int val) {
-        
+        if(val<min){
+            min = val;
+        }
+        st1.push({val,min});
     }
     
     void pop() {
-        
+        st1.pop();
+        if(st1.empty()){
+            min = INT_MAX;
+        }
+        else{
+            min = st1.top().first;
+        }
     }
     
     int top() {
-        
+        return st1.top().first;
     }
     
     int getMin() {
-        
+        return st1.top().second;
     }
 };
 
