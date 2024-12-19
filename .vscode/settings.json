@@ -1,6 +1,7 @@
 {
     "editor.acceptSuggestionOnEnter": "on",
     "files.associations": {
+        "*.dart": "dart",
         "string": "cpp",
         "filesystem": "cpp",
         "format": "cpp",
@@ -97,6 +98,11 @@
         "syncstream": "cpp",
         "thread": "cpp",
         "typeindex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "__hash_table": "cpp",
+        "__split_buffer": "cpp",
+        "__tree": "cpp",
+        "queue": "cpp",
+        "stack": "cpp"
     }
 }
