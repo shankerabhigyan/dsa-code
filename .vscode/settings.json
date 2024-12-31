@@ -103,6 +103,8 @@
         "__split_buffer": "cpp",
         "__tree": "cpp",
         "queue": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "target": "cpp",
+        "ios": "cpp"
     }
 }
