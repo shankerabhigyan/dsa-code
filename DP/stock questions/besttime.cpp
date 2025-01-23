@@ -5,13 +5,10 @@ using namespace std;
 int maxProfit(vector<int>&prices){
     int n = prices.size();
     int bid = INT_MAX;
-    int returns = INT_MIN;
+    int returns = 0;
     for(int i=1;i<n;i++){
         bid = min(bid,prices[i-1]);
         returns = max(returns,prices[i]-bid);
-    }
-    if(!returns>0){
-        returns = 0;
     }
     return returns;
 }
