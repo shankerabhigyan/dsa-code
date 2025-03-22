@@ -11,7 +11,6 @@ class Solution(object):
         visited = {}
         queue = []
         queue.append([0,0])
-        minPath = float('inf')
         while len(queue)>0:
             i,dist = queue.pop(0)
             if i not in visited:
@@ -22,4 +21,3 @@ class Solution(object):
                     if idx not in visited:
                         queue.append([idx,dist+1])
                     
-        return minPath
