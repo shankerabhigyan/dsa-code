@@ -7,7 +7,7 @@
                 "/usr/include/x86_64-linux-gnu/c++/13"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/gcc",
+            "compilerPath": "/opt/homebrew/bin/gcc-15",
             "cStandard": "c17",
             "cppStandard": "c++14",
             "intelliSenseMode": "${default}"
