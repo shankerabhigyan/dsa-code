@@ -2,13 +2,12 @@
 
 from typing import List
 
-# class Solution:
-#   def removeDuplicates(self, nums: List[int]) -> int:
-#     i,n=0,len(nums)
-#     ans=0
-#     while(i<n):
-#       j=i+1
-#       while(j<n and nums[j]==nums[i]):
-#         j+=1
-#       if(j-i>2):
-        
+class Solution:
+  def removeDuplicates(self, nums: List[int]) -> int:
+    l,r,n=0,0,len(nums)
+    while(r<n):
+      if(l<2 or nums[r]!=nums[l-2]):
+        nums[l]=nums[r]
+        l+=1
+      r+=1
+    return l
