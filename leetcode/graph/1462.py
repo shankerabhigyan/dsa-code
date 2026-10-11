@@ -8,7 +8,7 @@ class Solution:
 			visited[n]=True
 			memoiz[n].add(n)
 			for course in adj[n]:
-				memoiz[n] = memoiz[n].union(self.dfs(course,adj,memoiz,visited))
+				memoiz[n] = memoiz[n].update(self.dfs(course,adj,memoiz,visited))
 			return memoiz[n]
 
 	def checkIfPrerequisite(self, numCourses: int, prerequisites: list[list[int]], queries: list[list[int]]) -> list[bool]:
