@@ -1,16 +1,17 @@
 class Solution:
-	def findRoot(self,representative,x):
-		if x==representative[x]:
+	def findRoot(self,parent,x):
+		if x==parent[x]:
 			return x
 		else:
-			root = self.findRoot(representative, representative[x])
-			representative[x] = root # path compression
+			root = self.findRoot(parent, parent[x])
+			parent[x] = root # path compression
 			return root
 
 	def accountsMerge(self, accounts: list[list[str]]) -> list[list[str]]:
 		## union find
 		hashmap={}
 		parent = [i for i in range(len(accounts))]
+		size = [1 for i in range(len(accounts)+2)]
 		for i in range(len(accounts)):
 			acc = accounts[i]
 			for email in acc[1:]:
@@ -18,7 +19,12 @@ class Solution:
 					## union
 					rep0, rep1 = self.findRoot(parent, i), self.findRoot(parent, hashmap[email])
 					if rep0!=rep1:
-						parent[rep1] = rep0
+						if size[rep0]>size[rep1]:
+							parent[rep1] = rep0
+							size[rep0]+=size[rep1]
+						else:
+							size[rep1]+=size[rep0]
+							parent[rep0] = rep1
 				else:
 					hashmap[email]=i
 		## find all emails for each representative
