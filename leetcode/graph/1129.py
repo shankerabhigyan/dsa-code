@@ -1,3 +1,6 @@
+# https://leetcode.com/problems/shortest-path-with-alternating-colors/
+
+
 class Solution:
 	def shortestAlternatingPaths(self, n: int, redEdges: list[list[int]], blueEdges: list[list[int]]) -> list[int]:
 		# red=0, blue=1
