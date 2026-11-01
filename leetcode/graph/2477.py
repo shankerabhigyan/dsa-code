@@ -1,4 +1,5 @@
 # https://leetcode.com/problems/minimum-fuel-cost-to-report-to-the-capital/description/
+#kahns #topological #sort #graph
 
 class Solution:
 	def minimumFuelCost(self, roads: list[list[int]], seats: int) -> int:
