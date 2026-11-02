@@ -53,8 +53,12 @@ class Solution:
 		ans = self.traversal(adj,0,n2,visitedEl,visitedEdge)
 		for i in range(n):
 			for j in range(n):
-				el = i*(n+1)+j
-				if not visitedEl[el] and grid[i][j]!=' ':
-					ans+=self.traversal(adj,el,n2,visitedEl,visitedEdge)
+				if grid[i][j] == ' ':
+					continue
+				x = i*(n+1) + j                           
+				el = x+1 if grid[i][j] == '/' else x       
+				if not visitedEl[el]:
+					visitedEl[el] = 1
+					ans += self.traversal(adj, el, n2, visitedEl, visitedEdge)
 
 		return ans
